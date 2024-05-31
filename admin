@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'administration - Sportify</title>
+    <link rel="stylesheet" href="Accueil.css"> <!-- Assurez-vous d'avoir un fichier styles.css pour le style -->
+</head>
+<body>
+    <header>
+        <h1>Page d'administration - Sportify</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#utilisateurs">Gestion des utilisateurs</a></li>
+            <li><a href="#coachs">Gestion des coachs</a></li>
+            <li><a href="#salle-sport">Gestion de la salle de sport</a></li>
+            <li><a href="#disponibilites">Gestion des disponibilités</a></li>
+            <li><a href="#cv-coachs">Gestion des CV des coachs</a></li>
+            <!-- Ajoutez d'autres liens vers les fonctionnalités nécessaires -->
+        </ul>
+    </nav>
+    <main>
+        <section id="utilisateurs">
+            <h2>Gestion des utilisateurs</h2>
+            <!-- Formulaire pour ajouter/modifier/supprimer des utilisateurs -->
+        </section>
+        <section id="coachs">
+            <h2>Gestion des coachs</h2>
+            <!-- Formulaire pour ajouter/modifier/supprimer des coachs -->
+        </section>
+        <section id="salle-sport">
+            <h2>Gestion de la salle de sport</h2>
+            <!-- Formulaire pour modifier les informations de la salle de sport -->
+        </section>
+        <section id="disponibilites">
+            <h2>Gestion des disponibilités</h2>
+            <!-- Formulaire pour modifier les disponibilités des coachs -->
+        </section>
+        <section id="cv-coachs">
+            <h2>Gestion des CV des coachs</h2>
+            <!-- Formulaire pour ajouter/modifier/supprimer des CV des coachs -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sportify. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
