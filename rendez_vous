@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportify - Rendez-vous</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-content text-center">
+                <h1>Sportify : Consultation Sportive</h1>
+                <img src="logo.png" alt="Sportify Logo">
+            </div>
+        </header>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir.html">Tout Parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="recherche.html">Recherche</a></li>
+                <li class="nav-item"><a class="nav-link" href="rendez_vous.html">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="votre_compte.html">Votre Compte</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="rendez-vous" class="container mt-4">
+                <h2 class="text-center">Votre Rendez-vous</h2>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>Rendez-vous avec Coach Guy DUMAIS</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Date :</strong> 15 juin 2024</p>
+                        <p><strong>Heure :</strong> 14h00</p>
+                        <p><strong>Adresse :</strong> 123 Rue de la Salle, 75001 Paris</p>
+                        <p><strong>Document demandé :</strong> Certificat médical</p>
+                        <p><strong>Digicode :</strong> 4567</p>
+                        <button class="btn btn-danger" onclick="cancelAppointment()">Annulation de RDV</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="mt-4">
+            <p class="text-center">Contactez-nous : <a href="mailto:info@sportify.com">info@sportify.com</a> | Téléphone : 01 23 45 67 89</p>
+        </footer>
+    </div>
+
+    <script>
+        function cancelAppointment() {
+            if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
+                // Code pour annuler le rendez-vous et libérer le créneau.
+                alert('Votre rendez-vous a été annulé.');
+                // Rediriger ou mettre à jour la page pour refléter l'annulation.
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
