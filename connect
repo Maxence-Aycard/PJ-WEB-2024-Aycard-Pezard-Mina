@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion à la base de données</title>
+</head>
+<body>
+    <h1>Connexion à la base de données</h1>
+    <form action="connect.php" method="post">
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email" required>
+        <br>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <input type="submit" value="Se connecter">
+    </form>
+
+    <!-- Inclusion du code PHP pour la connexion à la base de données -->
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "myDB";
+
+    // Créer une connexion à la base de données
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Vérifier la connexion
+    if ($conn->connect_error) {
+        die("Connexion à la base de données échouée : " . $conn->connect_error);
+    }
+
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Récupérer les données envoyées par le formulaire
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Vérifier les informations d'identification de l'utilisateur
+        $sql = "SELECT * FROM Utilisateurs WHERE Email = '$email' AND Mot_de_Passe = '$password'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // L'utilisateur est connecté avec succès
+            $row = $result->fetch_assoc();
+            echo "Bonjour " . $row["Prenom"] . "! Vous êtes maintenant connecté.";
+        } else {
+            // Les informations d'identification sont incorrectes
+            echo "Les informations d'identification sont incorrectes. Veuillez réessayer.";
+        }
+    }
+
+    // Fermer la connexion à la base de données
+    $conn->close();
+    ?>
+</body>
+</html>
