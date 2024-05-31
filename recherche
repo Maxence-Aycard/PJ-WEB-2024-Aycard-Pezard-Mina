@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportify - Recherche</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-content text-center">
+                <h1>Sportify : Consultation Sportive</h1>
+                <img src="logo.png" alt="Sportify Logo">
+            </div>
+        </header>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir.html">Tout Parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="recherche.html">Recherche</a></li>
+                <li class="nav-item"><a class="nav-link" href="rendez_vous.html">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="votre_compte.html">Votre Compte</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="recherche" class="container mt-4">
+                <h2 class="text-center">Recherche</h2>
+                <div class="row mt-4">
+                    <div class="col-md-8 offset-md-2">
+                        <form id="search-form">
+                            <div class="form-group">
+                                <label for="search-query">Entrez votre recherche :</label>
+                                <input type="text" class="form-control" id="search-query" placeholder="Nom, spécialité ou établissement/service">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Rechercher</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="search-results" class="mt-4">
+                    <!-- Les résultats de la recherche apparaîtront ici -->
+                </div>
+            </section>
+        </main>
+        <footer class="mt-4">
+            <p class="text-center">Contactez-nous : <a href="mailto:info@sportify.com">info@sportify.com</a> | Téléphone : 01 23 45 67 89</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-query').value;
+            search(query);
+        });
+
+        function search(query) {
+            // Remplacer ce code par l'appel à l'API ou la logique de recherche appropriée
+            const results = [
+                {
+                    name: 'Coach Guy DUMAIS',
+                    speciality: 'Natation',
+                    location: 'Salle 101, Sportify Center'
+                },
+                {
+                    name: 'Salle de Sport Omnes',
+                    speciality: 'Établissement',
+                    location: '123 Rue de la Salle, 75001 Paris'
+                }
+            ];
+
+            const filteredResults = results.filter(item => 
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.speciality.toLowerCase().includes(query.toLowerCase()) ||
+                item.location.toLowerCase().includes(query.toLowerCase())
+            );
+
+            displayResults(filteredResults);
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p class="text-center">Aucun résultat trouvé.</p>';
+                return;
+            }
+
+            results.forEach(result => {
+                const resultElement = document.createElement('div');
+                resultElement.classList.add('card', 'mb-3');
+                resultElement.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${result.name}</h5>
+                        <p class="card-text"><strong>Spécialité :</strong> ${result.speciality}</p>
+                        <p class="card-text"><strong>Localisation :</strong> ${result.location}</p>
+                    </div>
+                `;
+                resultsContainer.appendChild(resultElement);
+            });
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
