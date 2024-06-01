@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportify - Salle de Sport Omnes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Accueil.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-content">
+                <h1>Sportify : Consultation Sportive</h1>
+                <img src="C:\Users\HP\Desktop\ProjetWebDynamique\Capture d’écran 2024-05-29 à 10.55.16.png" alt="Sportify Logo">
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="Accueil.html">Accueil</a></li>
+                <li><a href="ToutParcourir.html">Tout Parcourir</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="rendez_vous.html">Rendez-vous</a></li>
+                <li><a href="votre_compte.html">Votre Compte</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="salle-de-sport" class="container mt-4">
+                <h2 class="text-center">Salle de sport Omnes</h2>
+                <img src="salle_de_sport_omnes2.jpg" alt="Salle de Sport Omnes" class="img-fluid">
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h3>Coordonnées</h3>
+                        <p><strong>Numéro de la salle:</strong> 201</p>
+                        <p><strong>Téléphone:</strong> 01 23 45 67 89</p>
+                        <p><strong>Courriel:</strong> <a href="mailto:sport.omnes@example.com">sport.omnes@example.com</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Nos services</h3>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#servicesModal">Nos services</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="mt-4">
+            <p class="text-center">Contactez-nous : <a href="mailto:info@sportify.com">info@sportify.com</a> | Téléphone : 01 23 45 67 89</p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="servicesModal" tabindex="-1" aria-labelledby="servicesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="servicesModalLabel">Services fournis par la salle de sport Omnes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><a href="personnels.html">Personnels de la salle de sport</a></li>
+                        <li><a href="horaire_gym.html">Horaire de la gym</a></li>
+                        <li><a href="regles_utilisation_machines.html">Règles sur l’utilisation des machines</a></li>
+                        <li><a href="nouveaux_clients.html">Nouveaux clients</a></li>
+                        <li><a href="alimentation_nutrition.html">Alimentation et nutrition</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
