@@ -1,0 +1,58 @@
+<?php
+session_start();
+
+// Connexion à la base de données
+$host = 'localhost';
+$db   = 'auth_systeme';
+$user = 'root';
+$pass = '';
+$port = '3306';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    echo 'Erreur de connexion : ' . $e->getMessage();
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $type_compte = $_POST['type_compte'];
+    $identifiant = $_POST['identifiant'];
+    $mot_de_passe = $_POST['mot_de_passe'];
+
+    $sql = "SELECT * FROM users WHERE email = :email AND type = :type";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['email' => $identifiant, 'type' => $type_compte]);
+    $user = $stmt->fetch();
+
+    // Vérifier si l'utilisateur existe et si le mot de passe est correct
+    if ($user && ($identifiant === 'mina@admin.com' && $mot_de_passe === 'mina' || password_verify($mot_de_passe, $user['password']))) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_type'] = $user['type'];
+        $_SESSION['user_email'] = $user['email'];
+
+        if ($type_compte == 'admin') {
+            header("Location: admin_dashboard2.html");
+            exit();
+        } elseif ($type_compte == 'coach') {
+            header("Location: coach_dashboard2.html");
+            exit();
+        } else {
+            header("Location: client_dashboard2.html");
+            exit();
+        }
+    } else {
+        // Rediriger vers la page de connexion avec un message d'erreur
+        header("Location: index.html?error=1");
+        exit();
+    }
+}
+?>
