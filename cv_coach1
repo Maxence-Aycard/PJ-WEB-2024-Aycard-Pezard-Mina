@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coach>
+    <name>Coach 1</name>
+    <experience>
+        <job>Coach personnel chez GymFit, 2015-2023</job>
+        <job>Entraîneur de musculation chez Fitness World, 2010-2015</job>
+    </experience>
+    <education>
+        <degree>Diplôme en Sciences du Sport, Université de Paris, 2010</degree>
+        <degree>Certification en Nutrition Sportive, Institut du Sport, 2012</degree>
+    </education>
+    <skills>
+        <skill>Entraînement en force</skill>
+        <skill>Développement musculaire</skill>
+        <skill>Planification des régimes alimentaires</skill>
+        <skill>Coaching motivationnel</skill>
+    </skills>
+    <contact>
+        <email>coach1@sportify.com</email>
+        <phone>01 23 45 67 89</phone>
+    </contact>
+</coach>
