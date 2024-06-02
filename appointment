@@ -1,0 +1,32 @@
+<?php
+// Assurez-vous d'utiliser votre propre configuration de base de données
+$host = 'localhost';
+$dbname = 'ttt';
+$user = 'root';
+$pass = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo json_encode(['success' => false, 'message' => 'Connection failed: ' . $e->getMessage()]);
+    exit();
+}
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (isset($data['coachId'], $data['day'], $data['timeslot'])) {
+    $coachId = $data['coachId'];
+    $day = $data['day'];
+    $timeslot = $data['timeslot'];
+
+    $stmt = $pdo->prepare('INSERT INTO appointments (coach_id, day, timeslot) VALUES (?, ?, ?)');
+    if ($stmt->execute([$coachId, $day, $timeslot])) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to book appointment']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid data']);
+}
+?>
