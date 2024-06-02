@@ -1,0 +1,33 @@
+<?php
+// Connexion à la base de données
+$host = 'localhost';
+$db   = 'auth_systeme';
+$user = 'root';
+$pass = '';
+$port = '3306';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $coach_id = $_POST['coach_id'];
+
+    $sql = "DELETE FROM users WHERE id = :id AND type = 'coach'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $coach_id]);
+
+    header("Location: admin_dashboard2.html");
+    exit();
+}
+?>
