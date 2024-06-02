@@ -1,0 +1,129 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif; /* Utilisation de la police 'Poppins' */
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Fond blanc conservé */
+    color: #333;
+}
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+header {
+    background: linear-gradient(to bottom, #a9cce3, #ffffff); /* Dégradé de bleu à blanc */
+    color: #333;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+}
+header h1 {
+    margin: 0;
+    color: #2e86c1; /* Bleu plus foncé */
+    font-weight: 500; /* Utilisation d'une graisse plus élevée pour le titre */
+}
+header img {
+    height: 50px;
+}
+nav {
+    background-color: #5dade2; /* Bleu clair */
+    padding: 1em 0;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin: 0 0.5em;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    background-color: #a9cce3; /* Bleu clair */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+nav ul li a:hover {
+    background-color: #7fb3d5; /* Bleu clair légèrement plus foncé */
+}
+main {
+    padding: 2em;
+    text-align: center;
+}
+footer {
+    background-color: #f1f1f1;
+    padding: 1em;
+    text-align: center;
+}
+#carousel {
+    margin: 2em 0;
+}
+
+.carousel-image {
+    max-width: 50%; /* Adjust the percentage to make images smaller or larger */
+    height: auto;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.carousel-inner {
+    text-align: center; /* Center images and captions */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for captions */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black; /* Change color for better visibility */
+    border-radius: 50%;
+}
+
+.carousel-indicators li {
+    background-color: black; /* Indicator color */
+}
+
+#welcome-section h2 {
+    color: #00BFFF; /* Light blue color for the welcome message */
+}
+
+
+
+.map-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 1em;
+}
+
+#welcome-section h2 {
+    font-family: 'Segoe Script', sans-serif; /* Fine and slanted font */
+    font-style: italic;
+    color: #00BFFF; /* Light blue color */
+    font-size: 36px; /* Adjust size as needed */
+    margin-bottom: 10px; /* Slightly reduced bottom margin */
+    border: 2px solid #000; /* Black border around the title */
+    padding: 10px; /* Inner space of the title */
+}
+
+#welcome-section p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* Regular */
+}
+.specialist-image {
+    max-width: 450px; /* Taille maximale pour les images */
+    height: auto;
+    margin: 0 auto;
+}
