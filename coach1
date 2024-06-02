@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportify - Coach 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-content">
+                <h1>Sportify : Consultation Sportive</h1>
+                <img src="logo.png" alt="Sportify Logo">
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="tout_parcourir.html">Tout Parcourir</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="rendez_vous.html">Rendez-vous</a></li>
+                <li><a href="votre_compte.html">Votre Compte</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="coach-profile" class="container mt-4">
+                <h2 class="text-center">Coach 1</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="coach1.jpg" class="img-fluid" alt="Coach 1">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 id="coach-name">Nom: Coach 1</h3>
+                        <p><strong>Bureau:</strong> Salle 101</p>
+                        <p><strong>Disponibilité:</strong></p>
+                        <ul>
+                            <li>Lundi: 9h - 12h</li>
+                            <li>Mardi: 14h - 18h</li>
+                            <li>Mercredi: 10h - 13h</li>
+                            <li>Jeudi: 15h - 19h</li>
+                            <li>Vendredi: 9h - 11h</li>
+                        </ul>
+                        <h4>CV:</h4>
+                        <div id="cv-content">
+                            <!-- Le contenu du CV sera chargé ici -->
+                        </div>
+                        <a href="cv_coach1.xml" class="btn btn-primary" target="_blank">Voir le CV</a>
+                        <h4>Contact:</h4>
+                        <button class="btn btn-primary">Envoyer un message</button>
+                        <button class="btn btn-secondary">Appel vocal</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="appointment-section" class="container mt-4">
+                <h2 class="text-center">Prendre un Rendez-vous</h2>
+                <div id="calendar">
+                    <!-- Le calendrier sera généré ici -->
+                </div>
+                <button id="confirm-appointment" class="btn btn-success mt-3">Confirmer le Rendez-vous</button>
+            </section>
+        </main>
+        <footer>
+            <p>Contactez-nous : <a href="mailto:info@sportify.com">info@sportify.com</a> | Téléphone : 01 23 45 67 89</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('cv_coach1.xml')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(data, 'application/xml');
+                    const name = xml.getElementsByTagName('name')[0].textContent;
+                    const experience = xml.getElementsByTagName('experience')[0].getElementsByTagName('job');
+                    const education = xml.getElementsByTagName('education')[0].getElementsByTagName('degree');
+                    const skills = xml.getElementsByTagName('skills')[0].getElementsByTagName('skill');
+                    const contact = xml.getElementsByTagName('contact')[0];
+
+                    document.getElementById('coach-name').textContent = `Nom: ${name}`;
+
+                    let cvContent = '<h4>Expérience Professionnelle:</h4><ul>';
+                    for (let i = 0; i < experience.length; i++) {
+                        cvContent += `<li>${experience[i].textContent}</li>`;
+                    }
+                    cvContent += '</ul><h4>Éducation:</h4><ul>';
+                    for (let i = 0; i < education.length; i++) {
+                        cvContent += `<li>${education[i].textContent}</li>`;
+                    }
+                    cvContent += '</ul><h4>Compétences:</h4><ul>';
+                    for (let i = 0; i < skills.length; i++) {
+                        cvContent += `<li>${skills[i].textContent}</li>`;
+                    }
+                    cvContent += `</ul><h4>Contact:</h4><ul>
+                        <li>Email: <a href="mailto:${contact.getElementsByTagName('email')[0].textContent}">${contact.getElementsByTagName('email')[0].textContent}</a></li>
+                        <li>Téléphone: ${contact.getElementsByTagName('phone')[0].textContent}</li>
+                    </ul>`;
+
+                    document.getElementById('cv-content').innerHTML = cvContent;
+                })
+                .catch(error => {
+                    console.error('Error fetching the XML:', error);
+                });
+
+            // Function to generate the calendar
+            function generateCalendar() {
+                const availability = [
+                    { day: 'Lundi', hours: ['9h - 10h', '10h - 11h', '11h - 12h'] },
+                    { day: 'Mardi', hours: ['14h - 15h', '15h - 16h', '16h - 17h', '17h - 18h'] },
+                    { day: 'Mercredi', hours: ['10h - 11h', '11h - 12h', '12h - 13h'] },
+                    { day: 'Jeudi', hours: ['15h - 16h', '16h - 17h', '17h - 18h', '18h - 19h'] },
+                    { day: 'Vendredi', hours: ['9h - 10h', '10h - 11h'] }
+                ];
+
+                let calendarHtml = '<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Jour</th><th>Créneaux</th></tr></thead><tbody>';
+
+                availability.forEach(slot => {
+                    calendarHtml += `<tr><td>${slot.day}</td><td>`;
+                    slot.hours.forEach(hour => {
+                        calendarHtml += `<button class="btn btn-outline-primary m-1 timeslot">${hour}</button>`;
+                    });
+                    calendarHtml += '</td></tr>';
+                });
+
+                calendarHtml += '</tbody></table></div>';
+                document.getElementById('calendar').innerHTML = calendarHtml;
+            }
+
+            // Initialize the calendar
+            generateCalendar();
+
+            // Event listener for timeslot selection
+            let selectedTimeslot = null;
+            document.getElementById('calendar').addEventListener('click', function(event) {
+                if (event.target.classList.contains('timeslot')) {
+                    if (selectedTimeslot) {
+                        selectedTimeslot.classList.remove('btn-primary');
+                        selectedTimeslot.classList.add('btn-outline-primary');
+                    }
+                    selectedTimeslot = event.target;
+                    selectedTimeslot.classList.remove('btn-outline-primary');
+                    selectedTimeslot.classList.add('btn-primary');
+                }
+            });
+
+            // Event listener for appointment confirmation
+            document.getElementById('confirm-appointment').addEventListener('click', function() {
+                if (selectedTimeslot) {
+                    const timeslot = selectedTimeslot.textContent;
+                    const day = selectedTimeslot.closest('tr').children[0].textContent;
+
+                    // Send the appointment data to the server
+                    fetch('appointment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            coachId: 1,
+                            day: day,
+                            timeslot: timeslot
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Rendez-vous confirmé avec succès !');
+                        } else {
+                            alert('Erreur lors de la confirmation du rendez-vous.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                } else {
+                    alert('Veuillez sélectionner un créneau horaire.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
